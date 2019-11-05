@@ -1,0 +1,124 @@
+swagger: "2.0"
+info:
+  description: "六法を JSON 形式で取得できるAPI"
+  version: "1.0.0"
+  title: "六法JSON"
+  contact:
+    email: "contact@oldbigbuddha.dev"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "api.roppo-json.dev"
+basePath: "/v1"
+tags:
+- name: "憲法"
+  description: "Constitution"
+- name: "刑法"
+  description: "Penal Code"
+- name: "刑事訴訟法"
+  description: "Criminal Procedure"
+- name: "民法"
+  description: "Civil Code"
+- name: "民事訴訟法"
+  description: "Civil Procedure"
+- name: "商法"
+  description: "Commercial Code"
+
+schemes:
+- "https"
+
+paths:
+  /constitutions:
+    get:
+      tags:
+      - "憲法"
+      summary: "憲法の全文取得"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "成功"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Constitution"
+  /constitutions/{low_number}:
+    get:
+      tags:
+        - "憲法"
+      summary: "指定した条番号の条文を取得する"
+      parameters:
+        - name: "low_number"
+          in: "path"
+          type: "integer"
+          description: "条番号（日本国憲法第n条）"
+          required: true
+      responses:
+        200:
+          description: "成功"
+          schema:
+            $ref: "#/definitions/Constitution"
+      deprecated: false
+  /constitutions/{low_number}/{term_number}:
+    get:
+      tags:
+        - "憲法"
+      summary: "指定した条番号の条文を取得する"
+      parameters:
+        - name: "low_number"
+          in: "path"
+          type: "integer"
+          description: "条番号（日本国憲法第n条）"
+          required: true
+        - name: "term_number"
+          in: "path"
+          type: "integer"
+          description: "項番号（日本国憲法第a条b項）"
+          required: true
+      responses:
+        200:
+          description: "成功"
+          schema:
+            type: "object"
+            properties:
+              title:
+                type: "string"
+                example: "第1項"
+              sentence:
+                type: "string"
+                example: "天皇は、この憲法の定める国事に関する行為のみを行ひ、国政に関する権能を有しない。"
+      deprecated: false
+
+definitions:
+  Constitution:
+    type: "object"
+    properties:
+      title:
+        type: string
+        example: "第七条"
+      provisions:
+        type: "array"
+        items:
+          type: object
+          properties:
+            title:
+              type: string
+              example: null
+            sentence:
+              type: string
+              example: "天皇は、この憲法の定める国事に関する行為のみを行ひ、国政に関する権能を有しない。"
+            examples:
+              type: "array"
+              items:
+                type: string
+                example:
+                  - "憲法改正、法律、政令及び条約を公布すること。"
+                  - "国会を召集すること。"
+                  - "衆議院を解散すること。"
+                  - "国会議員の総選挙の施行を公示すること。"
+                  - "国務大臣及び法律の定めるその他の官吏の任免並びに全権委任状及び大使及び公使の信任状を認証すること。"
+                  - "大赦、特赦、減刑、刑の執行の免除及び復権を認証すること。"
+                  - "栄典を授与すること。"
+                  - "批准書及び法律の定めるその他の外交文書を認証すること。"
+                  - "外国の大使及び公使を接受すること。"
+                  - "儀式を行ふこと。"
