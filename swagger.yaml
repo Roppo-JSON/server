@@ -41,7 +41,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Constitution"
+              $ref: "#/definitions/Provision"
   /constitutions/{low_number}:
     get:
       tags:
@@ -57,7 +57,7 @@ paths:
         200:
           description: "成功"
           schema:
-            $ref: "#/definitions/Constitution"
+            $ref: "#/definitions/Provision"
       deprecated: false
   /constitutions/{low_number}/{term_number}:
     get:
@@ -90,13 +90,13 @@ paths:
       deprecated: false
 
 definitions:
-  Constitution:
+  Provision:
     type: "object"
     properties:
       title:
         type: string
         example: "第七条"
-      provisions:
+      terms:
         type: "array"
         items:
           type: object
@@ -107,18 +107,18 @@ definitions:
             sentence:
               type: string
               example: "天皇は、この憲法の定める国事に関する行為のみを行ひ、国政に関する権能を有しない。"
-            examples:
-              type: "array"
-              items:
-                type: string
-                example:
-                  - "憲法改正、法律、政令及び条約を公布すること。"
-                  - "国会を召集すること。"
-                  - "衆議院を解散すること。"
-                  - "国会議員の総選挙の施行を公示すること。"
-                  - "国務大臣及び法律の定めるその他の官吏の任免並びに全権委任状及び大使及び公使の信任状を認証すること。"
-                  - "大赦、特赦、減刑、刑の執行の免除及び復権を認証すること。"
-                  - "栄典を授与すること。"
-                  - "批准書及び法律の定めるその他の外交文書を認証すること。"
-                  - "外国の大使及び公使を接受すること。"
-                  - "儀式を行ふこと。"
+      examples:
+        type: "array"
+        items:
+          type: string
+          example:
+            - "憲法改正、法律、政令及び条約を公布すること。"
+            - "国会を召集すること。"
+            - "衆議院を解散すること。"
+            - "国会議員の総選挙の施行を公示すること。"
+            - "国務大臣及び法律の定めるその他の官吏の任免並びに全権委任状及び大使及び公使の信任状を認証すること。"
+            - "大赦、特赦、減刑、刑の執行の免除及び復権を認証すること。"
+            - "栄典を授与すること。"
+            - "批准書及び法律の定めるその他の外交文書を認証すること。"
+            - "外国の大使及び公使を接受すること。"
+            - "儀式を行ふこと。"
