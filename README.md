@@ -17,6 +17,7 @@
 - Python 3.8.0
 - Pipenv 2018.11.26
 - Flask 1.1.1
+- flake8 3.7.9
 
 ## References
 
