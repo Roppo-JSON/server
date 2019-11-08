@@ -5,6 +5,9 @@
 
 六法をJSON形式でお届け
 
+- [公式ホームページ](https://roppo-json.dev/)
+- [API ドキュメント（Swagger UI）](https://roppo-json.dev/docs/index.html)
+
 ## Feature
 
 法律を JSON 形式で配信するサーバー。現在の目標は基本六法（日本国憲法・刑法・刑事訴訟法・民法・民事訴訟法・商法）のカバー
