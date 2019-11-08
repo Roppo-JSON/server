@@ -7,10 +7,11 @@ verify_ssl = true
 code-style = "flake8 . --ignore E501"
 
 [dev-packages]
+flake8 = "*"
 
 [packages]
 flask = "*"
-flake8 = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"

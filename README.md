@@ -1,4 +1,5 @@
 # Roppo-JSON
+
 [![LANGUAGE](https://img.shields.io/badge/Python-3.8.0-blue.svg)](https://docs.python.org/3/)
 [![LICENSE](https://img.shields.io/badge/License-Apache%202-orange.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
@@ -17,6 +18,7 @@
 - Python 3.8.0
 - Pipenv 2018.11.26
 - Flask 1.1.1
+- Gunicorn 19.9.0
 - flake8 3.7.9
 
 ## References
