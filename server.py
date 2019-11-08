@@ -14,6 +14,7 @@ VERSION = 'v1'
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 app.config['JSON_SORT_KEYS'] = False
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 # Logging Configration
 formatter = '%(asctime)s [%(levelname)s] in %(pathname)s %(lineno)d: %(message)s'
@@ -27,7 +28,7 @@ app.register_blueprint(bp_constitution, url_prefix=f'/{VERSION}/constitution')
 
 
 def main():
-    app.run(port=3000)
+    app.run()
 
 
 if __name__ == "__main__":

@@ -36,7 +36,7 @@ with open('./Lows/constitution.json') as f:
 def all_constitution():
     """Get all provision of Japanese constitution"""
 
-    res = make_response(jsonify(data))
+    res = jsonify(data)
 
     logger.info({
         'action': 'Get all constitution',
@@ -66,7 +66,7 @@ def get_provision(low_number):
             }
         }), 404
 
-    res = make_response(jsonify(data[low_number]))
+    res = jsonify(data[low_number])
 
     logger.info({
         'action': 'Get provision',
@@ -122,7 +122,7 @@ def get_term(low_number, term_number):
             }
         }), 404
 
-    res = make_response(jsonify(provision[term_number]))
+    res = jsonify(provision[term_number])
 
     logger.info({
         'action': 'Get term',
