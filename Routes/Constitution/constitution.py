@@ -12,124 +12,134 @@ logger = getLogger(__name__)
 logger.setLevel(INFO)
 
 
-bp_constitution = Blueprint('constitution', __name__)
+bp_constitution = Blueprint("constitution", __name__)
 
 data = None
-with open('./Lows/constitution.json') as f:
+with open("./Lows/constitution.json") as f:
 
-    logger.info({
-        'action': 'Load file',
-        'File': 'constitution.json',
-        'status': 'run'
-    })
+    logger.info({"action": "Load file", "File": "constitution.json", "status": "run"})
 
     data = json.load(f)
 
-    logger.info({
-        'action': 'Load file',
-        'File': 'constitution.json',
-        'status': 'success'
-    })
+    logger.info(
+        {"action": "Load file", "File": "constitution.json", "status": "success"}
+    )
 
 
-@bp_constitution.route('/')
+@bp_constitution.route("/")
 def all_constitution():
     """Get all provision of Japanese constitution"""
 
     res = jsonify(data)
 
-    logger.info({
-        'action': 'Get all constitution',
-        'status': 'success'
-    })
+    logger.info({"action": "Get all constitution", "status": "success"})
 
     return res
 
 
-@bp_constitution.route('/<int:low_number>')
+@bp_constitution.route("/<int:low_number>")
 def get_provision(low_number):
     """Get a specific provision of Japanese constitution by low_number"""
 
     if len(data) < low_number:
 
-        logger.error({
-            'action': 'Get provison',
-            'status': 'fail',
-            'message': 'Not found specified provision',
-            'low_number': low_number
-        })
-
-        return make_response({
-            'error': {
-                'status': 404,
-                'message': f"日本国憲法 第{low_number}条 は見つかりませんでした。"
+        logger.error(
+            {
+                "action": "Get provison",
+                "status": "fail",
+                "message": "Not found specified provision",
+                "low_number": low_number,
             }
-        }), 404
+        )
+
+        return (
+            make_response(
+                {
+                    "error": {
+                        "status": 404,
+                        "message": f"日本国憲法 第{low_number}条 は見つかりませんでした。",
+                    }
+                }
+            ),
+            404,
+        )
 
     res = jsonify(data[low_number])
 
-    logger.info({
-        'action': 'Get provision',
-        'status': 'success',
-        'low_number': low_number
-    })
+    logger.info(
+        {"action": "Get provision", "status": "success", "low_number": low_number}
+    )
 
     return res
 
 
-@bp_constitution.route('<int:low_number>/<int:term_number>')
+@bp_constitution.route("<int:low_number>/<int:term_number>")
 def get_term(low_number, term_number):
     """Get specific term of provision in Japanese constitution by low_number and term_number"""
 
     if len(data) < low_number:
 
-        logger.error({
-            'action': 'Get provision',
-            'status': 'fail',
-            'message': 'Not found specified provision',
-            'low_number': low_number
-        })
-
-        return make_response({
-            'error': {
-                'status': 404,
-                'message': f"日本国憲法 第{low_number}条 は見つかりませんでした。"
+        logger.error(
+            {
+                "action": "Get provision",
+                "status": "fail",
+                "message": "Not found specified provision",
+                "low_number": low_number,
             }
-        }), 404
+        )
+
+        return (
+            make_response(
+                {
+                    "error": {
+                        "status": 404,
+                        "message": f"日本国憲法 第{low_number}条 は見つかりませんでした。",
+                    }
+                }
+            ),
+            404,
+        )
 
     provision = data[low_number]
 
-    logger.info({
-        'action': 'Get provision',
-        'status': 'success',
-        'low_number': low_number
-    })
+    logger.info(
+        {"action": "Get provision", "status": "success", "low_number": low_number}
+    )
 
     if len(provision) < term_number:
 
-        logger.error({
-            'action': 'Get term',
-            'status': 'fail',
-            'message': 'Not found specified term',
-            'low_number': low_number,
-            'term_number': term_number
-        })
-
-        return make_response({
-            'error': {
-                'status': 404,
-                'message': f"日本国憲法 第{low_number}条 第{term_number}項 は見つかりませんでした。"
+        logger.error(
+            {
+                "action": "Get term",
+                "status": "fail",
+                "message": "Not found specified term",
+                "low_number": low_number,
+                "term_number": term_number,
             }
-        }), 404
+        )
+
+        return (
+            make_response(
+                {
+                    "error": {
+                        "status": 404,
+                        "message": f"日本国憲法 第{low_number}条 第{term_number}項 は見つかりませんでした。",
+                    }
+                }
+            ),
+            404,
+        )
 
     res = jsonify(provision[term_number])
 
-    logger.info({
-        'action': 'Get term',
-        'status': 'success',
-        'low_number': low_number,
-        'term_number': term_number
-    })
+    logger.info(
+        {
+            "action": "Get term",
+            "status": "success",
+            "low_number": low_number,
+            "term_number": term_number,
+        }
+    )
 
     return res
 
@@ -138,8 +148,8 @@ def get_term(low_number, term_number):
 def add_custom_header(res):
     """レスポンスにカスタムヘッダーを追加する。"""
 
-    res.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    res.headers['Expires'] = '0'
-    res.headers['Server'] = 'Roppo-JSON'
+    res.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    res.headers["Expires"] = "0"
+    res.headers["Server"] = "Roppo-JSON"
 
     return res

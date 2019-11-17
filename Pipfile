@@ -5,9 +5,11 @@ verify_ssl = true
 
 [scripts]
 style-check = "flake8 . --show-source"
+format-code="black -t py38 ."
 
 [dev-packages]
 flake8 = "*"
+black = "*"
 
 [packages]
 flask = "*"
@@ -15,3 +17,6 @@ gunicorn = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
