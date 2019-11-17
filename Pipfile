@@ -6,6 +6,7 @@ verify_ssl = true
 [scripts]
 style-check = "flake8 . --show-source"
 format-code="black -t py38 ."
+format-check="black -t py38 --check ."
 
 [dev-packages]
 flake8 = "*"
