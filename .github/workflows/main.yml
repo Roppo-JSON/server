@@ -1,4 +1,4 @@
-name: Formatter Test
+name: Server Test
 
 on: [push]
 
