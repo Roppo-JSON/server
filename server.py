@@ -5,7 +5,6 @@ from logging import INFO as log_level_INFO
 from flask import Flask
 
 from Routes.Constitution.constitution import bp_constitution
-from Routes.Penal.penal import bp_penal
 
 
 VERSION = "v1"
@@ -26,7 +25,6 @@ logger = getLogger(__name__)
 
 # Set Routing
 app.register_blueprint(bp_constitution, url_prefix=f"/{VERSION}/constitution")
-app.register_blueprint(bp_penal, url_prefix=f"/{VERSION}/penal")
 
 
 def main():
