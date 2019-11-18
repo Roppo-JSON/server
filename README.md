@@ -5,6 +5,8 @@
 
 [![GitHub Actions](https://github.com/Roppo-JSON/server/workflows/Server%20Test/badge.svg)](https://github.com/Roppo-JSON/data/actions)
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 六法をJSON形式でお届け
 
 - [公式ホームページ](https://roppo-json.dev/)
